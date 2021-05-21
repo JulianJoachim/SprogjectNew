@@ -1,0 +1,23 @@
+@import model.Tasklist
+@(tasks: Seq[Tasklist])
+
+@main("Welcome to Play") {
+  <h1>Willkommen bei spezieller Programmierung!</h1>
+  <div id="tasks">
+    <h2>Erstelle ein Tasklist</h2>
+
+    <form action="/insert/task" method="POST">
+      <input name="title" type="text" placeholder="title"/>
+      <input name="body" type="text" placeholder="body"/>
+      <input type="submit"/>
+    </form>
+
+    <h2>Zu erledigende Tasks:</h2>
+    <table>
+      <tr><th>Titel</th><th>Inhalt</th></tr>
+      @for(task <- tasks){
+        <tr><td>@task.title</td><td>@task.body</td></tr>
+      }
+    </table>
+  </div>
+}
