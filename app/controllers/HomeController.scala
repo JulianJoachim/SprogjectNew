@@ -26,8 +26,8 @@ class HomeController @Inject() (tasklistDao: TasklistDAO, controllerComponents: 
 
   val taskForm = Form(
     mapping(
-      "TITLE" -> text(),
-      "BODY" -> text())(Tasklist.apply)(Tasklist.unapply))
+      "title" -> text(),
+      "body" -> text())(Tasklist.apply)(Tasklist.unapply))
 
   def insertTask = Action.async { implicit request =>
     val task: Tasklist = taskForm.bindFromRequest.get
