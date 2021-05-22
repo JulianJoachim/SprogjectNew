@@ -6,7 +6,3 @@ body {
 border-style: solid;
 }
 
-table tr td {
-    border-inline: 1px solid black;
-    border-block: 1px solid black;
-}
