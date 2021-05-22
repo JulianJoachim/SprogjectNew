@@ -1,0 +1,12 @@
+body {
+    background-color: skyblue;
+}
+
+#tasks2 {
+border-style: solid;
+}
+
+table tr td {
+    border-inline: 1px solid black;
+    border-block: 1px solid black;
+}

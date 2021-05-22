@@ -3,9 +3,12 @@
 # https://www.playframework.com/documentation/latest/ScalaRouting
 # ~~~~
 
-GET     /                           controllers.HomeController.index()
+GET     /                           controllers.HomeController.login()
+GET     /index                      controllers.HomeController.index()
 
-POST    /insert/task                controllers.HomeController.insertTask
+POST    /insert/task                controllers.HomeController.insertTask()
+POST    /insert/login               controllers.HomeController.insertLogin()
+POST    /index                      controllers.HomeController.index()
 
 GET     /env                        controllers.HomeController.env()
 
