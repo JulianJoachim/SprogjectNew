@@ -37,12 +37,11 @@ class HomeController @Inject() (tasklistDao: TasklistDAO, loginDao: LoginDAO, co
     val login: Login = loginForm.bindFromRequest.get
     loginDao.all().map{ case _ => Redirect(routes.HomeController.index) }
   }
+
   def insertLogin = Action.async { implicit request =>
     val login: Login = loginForm.bindFromRequest.get
     loginDao.insert(login).map(_ => Redirect(routes.HomeController.index))
   }
-
-
 
   val taskForm = Form(
     mapping(
