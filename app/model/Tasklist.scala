@@ -1,4 +1,4 @@
 package model
 
-case class Tasklist(title: String, body: String)
+case class Tasklist(id: Int, title: String, body: String, username: String)
 

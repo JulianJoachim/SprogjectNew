@@ -16,14 +16,19 @@ class LoginDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
   def all(): Future[Seq[Login]] = db.run(Logins.result)
 
   def insert(login: Login): Future[Unit] = {
-    db.run(Logins.insertOrUpdate(login)).map { _ => () }
+    db.run(Logins += login).map { _ => () }
   }
 
-  private class LoginTable(tag: Tag) extends Table[Login](tag, "LOGIN") {
+  def search(username: String): Future[Unit] = {
+    db.run(Logins.filter(_.username === username).result).map {username => username}
+  }
 
+  protected class LoginTable(tag: Tag) extends Table[Login](tag, "LOGIN") {
     def username = column[String]("USERNAME", O.PrimaryKey)
     def password = column[String]("PASSWORD")
 
     def * = (username, password) <> (Login.tupled, Login.unapply)
   }
+
+  lazy val Users = new TableQuery(tag => new LoginTable(tag))
 }

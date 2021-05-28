@@ -6,9 +6,13 @@
 GET     /                           controllers.HomeController.login()
 GET     /index                      controllers.HomeController.index()
 
+
 POST    /insert/task                controllers.HomeController.insertTask()
 POST    /insert/login               controllers.HomeController.insertLogin()
+POST    /validate/login             controllers.HomeController.validateLogin()
 POST    /index                      controllers.HomeController.index()
+POST    /delete                     controllers.HomeController.deleteTask()
+POST    /logout                     controllers.HomeController.logout()
 
 GET     /env                        controllers.HomeController.env()
 

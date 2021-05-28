@@ -1,22 +1,41 @@
 @import model.Tasklist
-@(tasks: Seq[Tasklist])
+@(tasks: Seq[Tasklist], usaname: String)
 
 @main("Aufgabenliste") {
+  <div id="logout">
+      <form action="/logout" method="POST">
+        <input class="example_a" type="submit" value="Logout"/>
+      </form>
+  </div>
+
   <div id="tasks">
-    <h2>Erstelle eine neue Aufgabe</h2>
+    <h2>Erstelle eine neue Aufgabe für @usaname </h2>
 
     <form action="/insert/task" method="POST">
+      <input name="idAuto" type="hidden" value="0"/>
       <input name="title" type="text" placeholder="title"/>
       <input name="body" type="text" placeholder="body"/>
-      <input type="submit"/>
+      <input name="username" type="hidden" value="@usaname"/>
+      <input class="example_d" type="submit"/>
     </form>
 
     <h2>Zu erledigende Aufgaben:</h2>
     <table id="tasks2">
-      <tr><th>Titel</th><th>Inhalt</th></tr>
+      <tr><th>Titel</th><th>Inhalt</th><th>Erledigt?</th></tr>
       @for(task <- tasks){
-        <tr><td>@task.title</td><p></p><td>@task.body</td></tr>
+        <tr>
+          <td>@task.title</td>
+          <td>@task.body</td>
+          <td>
+            <form action="/delete" method="POST">
+              <input name="numberToDelete" type="hidden" value="@task.id"/>
+              <input class="example_c" type="submit" value="x"/>
+            </form>
+          </td>
+        </tr>
       }
     </table>
   </div>
+
+
 }

@@ -1,13 +1,28 @@
 @main("Bitte melde dich an.") {
 
-<h1>Willkommen bei dem Notizmanagementsystem!</h1>
-<div id="login">
-    <h2>Logge dich bitte ein.</h2>
 
-    <form action="/index" method="POST">
+<div id="login">
+    <h1>Willkommen bei dem Notizmanagementsystem!</h1>
+    <br>
+    <h2>Einloggen:</h2>
+
+    <form action="/validate/login" method="POST">
         <input name="username" type="text" placeholder="username"/>
         <input name="password" type="password" placeholder="password"/>
         <input type="submit"/>
     </form>
+
+    <br>
+    <br>
+    <br>
+
+    <h2>Account erstellen:</h2>
+
+    <form action="/insert/login" method="POST">
+        <input name="username2" type="text" placeholder="username2"/>
+        <input name="password2" type="password" placeholder="password2"/>
+        <input type="submit"/>
+    </form>
+
 </div>
 }
