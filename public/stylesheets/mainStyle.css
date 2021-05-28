@@ -1,7 +1,7 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300';
 
 body {
-    background-image: url("../images/2833289.jpg");
+        background-image: url("/assets/images/2833289.jpg");
 }
 
 #login{
