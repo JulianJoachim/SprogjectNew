@@ -5,7 +5,7 @@
 
 GET     /                           controllers.HomeController.login()
 GET     /index                      controllers.HomeController.index()
-
+GET     /register                   controllers.HomeController.register()
 
 POST    /insert/task                controllers.HomeController.insertTask()
 POST    /insert/login               controllers.HomeController.insertLogin()

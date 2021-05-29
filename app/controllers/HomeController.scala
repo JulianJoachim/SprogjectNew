@@ -43,6 +43,10 @@ class HomeController @Inject() (protected val dbConfigProvider: DatabaseConfigPr
     Ok(views.html.login())
   }
 
+  def register() = Action { implicit request =>
+    Ok(views.html.register())
+  }
+
   def logout() = Action { implicit request =>
     Redirect(routes.HomeController.login()).withNewSession
   }
