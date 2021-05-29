@@ -16,25 +16,28 @@
       <input name="title" type="text" placeholder="title"/>
       <input name="body" type="text" placeholder="body"/>
       <input name="username" type="hidden" value="@usaname"/>
+      <input name="dueBy" type="date"/>
       <input class="example_d" type="submit"/>
     </form>
 
     <h2>Zu erledigende Aufgaben:</h2>
-    <table id="tasks2">
-      <tr><th>Titel</th><th>Inhalt</th><th>Erledigt?</th></tr>
+    <ul id="tasks2">
       @for(task <- tasks){
-        <tr>
-          <td>@task.title</td>
-          <td>@task.body</td>
-          <td>
-            <form action="/delete" method="POST">
-              <input name="numberToDelete" type="hidden" value="@task.id"/>
-              <input class="example_c" type="submit" value="x"/>
-            </form>
-          </td>
-        </tr>
+          <li>
+              <span id="title">
+                @task.title
+               </span>
+                <div id="taskLineButton">
+                  <form action="/delete" method="POST">
+                    <input name="numberToDelete" type="hidden" value="@task.id"/>
+                    <input class="example_c" type="submit" value="x"/>
+                  </form>
+                </div>
+              <br>
+                @task.body
+          </li>
       }
-    </table>
+    </ul>
   </div>
 
 

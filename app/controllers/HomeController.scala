@@ -7,7 +7,7 @@ import slick.jdbc.PostgresProfile.api._
 import javax.inject._
 import play.api._
 import play.api.data.Form
-import play.api.data.Forms.{default, mapping, number, text}
+import play.api.data.Forms.{date, default, mapping, number, sqlDate, text}
 import play.api.mvc._
 
 import javax.inject._
@@ -22,6 +22,8 @@ import play.api.db.slick.HasDatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 import slick.jdbc.PostgresProfile.api._
 
+import java.time.LocalDate
+import java.sql.Date
 import scala.concurrent.Future
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -95,7 +97,8 @@ class HomeController @Inject() (protected val dbConfigProvider: DatabaseConfigPr
       "idAuto" -> number(),
       "title" -> text(),
       "body" -> text(),
-      "username" -> text())(Tasklist.apply)(Tasklist.unapply))
+      "username" -> text())(Tasklist.apply)(Tasklist.unapply)
+  )
 
   def insertTask = Action.async { implicit request =>
     val task: Tasklist = taskForm.bindFromRequest.get

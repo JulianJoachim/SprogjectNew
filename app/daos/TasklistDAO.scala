@@ -5,6 +5,10 @@ import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 import slick.sql.SqlProfile.ColumnOption.SqlType
 
+import slick.jdbc.PostgresProfile.api._
+
+
+import java.sql.{Date}
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
