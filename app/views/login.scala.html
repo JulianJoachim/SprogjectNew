@@ -1,3 +1,5 @@
+@(error: String)
+
 @main("Bitte melde dich an.") {
 
     <br>
@@ -8,6 +10,7 @@
 
     <form action="/validate/login" method="POST">
         <h1>Einloggen:</h1>
+        <h3>@error</h3>
         <div>
             <input name="username" type="text" placeholder="username" id="username"/>
         </div>
@@ -17,7 +20,7 @@
         </div>
         <div>
             <input type="submit" value="Log in" />
-            <a href="/register">Register</a>
+            <a href="/register">Registrieren</a>
         </div>
 
     </form>

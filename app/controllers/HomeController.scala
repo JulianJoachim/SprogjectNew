@@ -2,29 +2,13 @@ package controllers
 
 import daos.{LoginDAO, TasklistDAO}
 import model.{GetDelete, Login, LoginFunc, Tasklist}
-import slick.jdbc.PostgresProfile.api._
-
-import javax.inject._
-import play.api._
 import play.api.data.Form
-import play.api.data.Forms.{date, default, mapping, number, sqlDate, text}
+import play.api.data.Forms.{mapping, number, text}
+import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import play.api.mvc._
+import slick.jdbc.JdbcProfile
 
 import javax.inject._
-import play.api.mvc._
-import play.api.i18n._
-import play.api.libs.json._
-import models._
-import play.api.db.slick.DatabaseConfigProvider
-
-import scala.concurrent.ExecutionContext
-import play.api.db.slick.HasDatabaseConfigProvider
-import slick.jdbc.JdbcProfile
-import slick.jdbc.PostgresProfile.api._
-
-import java.time.LocalDate
-import java.sql.Date
-import scala.concurrent.Future
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
@@ -40,11 +24,11 @@ class HomeController @Inject() (protected val dbConfigProvider: DatabaseConfigPr
     }
 
   def login() = Action { implicit request =>
-    Ok(views.html.login())
+    Ok(views.html.login(request.session.get("errorL").getOrElse("")))
   }
 
   def register() = Action { implicit request =>
-    Ok(views.html.register())
+    Ok(views.html.register(request.session.get("errorR").getOrElse("")))
   }
 
   def logout() = Action { implicit request =>
@@ -71,7 +55,7 @@ class HomeController @Inject() (protected val dbConfigProvider: DatabaseConfigPr
         case Some(login.username) =>
           Redirect(routes.HomeController.index()).withSession("username" -> login.username)
         case None =>
-          Redirect(routes.HomeController.login())
+          Redirect(routes.HomeController.login()).withSession("errorL" -> "User/Passwort Kombination existiert nicht.")
       }
     }
   }
@@ -88,7 +72,7 @@ class HomeController @Inject() (protected val dbConfigProvider: DatabaseConfigPr
     matches.map { usersName =>
       usersName match {
         case Some(createLogin.username) =>
-          Redirect(routes.HomeController.login())
+          Redirect(routes.HomeController.register()).withSession("errorR" -> "User existiert bereits.")
         case None =>
           loginDao.insert(createLogin)
           Redirect(routes.HomeController.index).withSession("username" -> createLogin.username)

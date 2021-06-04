@@ -1,3 +1,5 @@
+@(error: String)
+
 @main("Bitte registriere dich.") {
 
 
@@ -8,10 +10,14 @@
         <section id="content">
         <h1>Willkommen bei dem Notizmanagementsystem!</h1>
             <h2>Account erstellen:</h2>
+            <h3>@error</h3>
             <form action="/insert/login" method="POST">
                 <input name="username2" type="text" placeholder="username"/>
                 <input name="password2" type="password" placeholder="password"/>
                 <input type="submit"/>
+                <div>
+                    <a href="/">Zurück zum Login</a>
+                </div>
             </form>
         </section>
     </div>
