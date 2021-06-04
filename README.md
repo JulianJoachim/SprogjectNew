@@ -1,5 +1,4 @@
-# Reboot des Sprog Projektes
+# Projekt im Rahmen des Moduls "Spezielle Programmierung"
+# HTW Berlin Wirtschaftsinformatik 6 Semester
 
-push
-df5f7
-push
+# Es handelt sich um eine einfache implementierung einer Tasklist. Diese wurde mit Scala Play erbaut. Besonderer Fokus lag hier auf der Implementierung mit funktionaler Programmierung.
